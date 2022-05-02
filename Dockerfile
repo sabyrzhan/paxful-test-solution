@@ -42,6 +42,7 @@ RUN apt-get update \
     && apt-get install -y yarn \
     && apt-get install -y mysql-client \
     && apt-get install -y postgresql-client \
+    && apt-get install -y composer \
     && apt-get -y autoremove \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -54,6 +55,7 @@ COPY php.ini /etc/php/8.1/cli/conf.d/99-sail.ini
 RUN chmod +x /usr/local/bin/start-container
 COPY / /var/www/html
 RUN rm -rf .env
+RUN composer install
 
 EXPOSE 8000
 

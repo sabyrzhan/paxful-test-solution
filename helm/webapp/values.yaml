@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   name: paxful-test-solution
   repository: sabyrzhan/paxful-test-solution
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
