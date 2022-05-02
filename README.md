@@ -8,7 +8,7 @@
    1. `kubectl port-forward svc/grafana 8080:300`
    2. Access in browser at: `http://localhost:8080`
 
-## Adding secrets
+## Secrets
 ### Database secret
 Database secret `db_password` with key `password` must be added to secret.
 1. Create secret:
@@ -37,3 +37,8 @@ kubectl create secret generic app-key \
 ```
 kubectl get secrets
 ```
+
+## Email UI
+To check sent emails:
+1. `kubectl port-forward svc/paxful-email-service 8025:8025`
+2. Access in browser: `http://localhost:8025`
