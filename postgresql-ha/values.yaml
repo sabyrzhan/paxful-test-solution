@@ -1078,7 +1078,7 @@ metrics:
   ## Bitnami PostgreSQL Prometheus exporter image
   ## @param metrics.enabled Enable PostgreSQL Prometheus exporter
   ##
-  enabled: false
+  enabled: true
   ## ref: https://hub.docker.com/r/bitnami/pgpool/tags/
   ## @param metrics.image.registry PostgreSQL Prometheus exporter image registry
   ## @param metrics.image.repository PostgreSQL Prometheus exporter image repository
@@ -1270,7 +1270,7 @@ metrics:
   serviceMonitor:
     ## @param metrics.serviceMonitor.enabled if `true`, creates a Prometheus Operator ServiceMonitor (also requires `metrics.enabled` to be `true`)
     ##
-    enabled: false
+    enabled: true
     ## @param metrics.serviceMonitor.namespace Optional namespace which Prometheus is running in
     ## Fallback to the prometheus default unless specified
     ##
@@ -1380,7 +1380,7 @@ volumePermissions:
 persistence:
   ## @param persistence.enabled Enable data persistence
   ##
-  enabled: true
+  enabled: false
   ## @param persistence.existingClaim A manually managed Persistent Volume and Claim
   ## If defined, PVC must be created manually before volume will be bound.
   ## All replicas will share this PVC, using existingClaim with replicas > 1 is only useful in very special use cases.
