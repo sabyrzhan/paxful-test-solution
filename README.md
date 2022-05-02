@@ -66,3 +66,14 @@ Before starting to develop do the following:
 1. Copy `.env.example` to `.env` file and specify DB and mail parameters
 2. Start containers with `docker-compose up`
 3. Migrate DB schema from `schema.sql` manually
+
+
+## Build and Push
+Docker image is stored in Docker hub.
+1. To build: `docker-compose build`
+2. To push `docker-compose push`
+
+## Deployment to EKS
+If you want to deploy and test on EKS you can:
+* create cluster quickly by executing `./eks.sh create`
+* to delete `./eks.sh delete`
