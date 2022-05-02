@@ -1,4 +1,11 @@
 # Paxful Test Solution
+## Overview
+The solution consists from:
+1. Helm charts of PostgreSQL, Grafana, Prometheus and WebApp itself.
+2. There are 2 docker-compose files:
+   1. `docker-compose.yml` - for local development
+   2. `docker-compose-test.yml` - for testing integration with DB and Mail services
+
 ## Helm chars installation steps
 1. Install prometheus: `helm install prometheus .`
     1. `kubectl port-forward --namespace default svc/prometheus-kube-prometheus-prometheus 9090:9090`
@@ -42,3 +49,7 @@ kubectl get secrets
 To check sent emails:
 1. `kubectl port-forward svc/paxful-email-service 8025:8025`
 2. Access in browser: `http://localhost:8025`
+
+## Grafana UI
+If you added Prometheus and Grafana charts then you should import
+PostgreSQL dashboard with ID: 9628
