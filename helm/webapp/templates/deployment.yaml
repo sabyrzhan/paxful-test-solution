@@ -36,7 +36,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.secrets.db_secret_name }}
-                  key: password
+                  key: postgresql-password
           ports:
             - name: http
               containerPort: 80

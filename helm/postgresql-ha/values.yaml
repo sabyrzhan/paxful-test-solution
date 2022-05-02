@@ -34,7 +34,7 @@ global:
     repmgrUsername: ""
     repmgrPassword: ""
     repmgrDatabase: ""
-    existingSecret: ""
+    existingSecret: "db-password"
   ldap:
     bindpw: ""
     existingSecret: ""
@@ -363,7 +363,7 @@ postgresql:
   ## @param postgresql.database PostgreSQL database
   ##
   username: postgres
-  password: "test"
+  password: ""
   database: "paxful-test-db"
   ## @param postgresql.existingSecret PostgreSQL password using existing secret
   ##
@@ -406,7 +406,7 @@ postgresql:
   ## @param postgresql.repmgrChildNodesDisconnectTimeout Repmgr time before node will be fenced when insufficient child nodes are detected (in seconds)
   ##
   repmgrUsername: repmgr
-  repmgrPassword: "test"
+  repmgrPassword: ""
   repmgrDatabase: repmgr
   repmgrLogLevel: NOTICE
   repmgrConnectTimeout: 5
@@ -1069,7 +1069,7 @@ serviceAccount:
 ##
 psp:
   create: false
-  
+
 ## @section Metrics parameters
 
 ## PostgreSQL Prometheus exporter parameters

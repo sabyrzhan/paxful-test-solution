@@ -45,7 +45,7 @@ class Controller extends BaseController
 
         return response()->json([
             'status' => 444,
-            'error' => 'Client blocked!'
+            'error' => 'Access denied'
         ], 444);
     }
 

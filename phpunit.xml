@@ -21,8 +21,15 @@
         <env name="APP_ENV" value="testing"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="CACHE_DRIVER" value="array"/>
-        <env name="DB_DATABASE" value="testing"/>
-        <env name="MAIL_MAILER" value="array"/>
+        <env name="DB_DATABASE" value="paxful-test-db"/>
+        <env name="DB_HOST" value="localhost"/>
+        <env name="DB_USERNAME" value="postgres"/>
+        <env name="DB_PASSWORD" value="test"/>
+        <env name="MAIL_MAILER" value="smtp"/>
+        <env name="MAIL_HOST" value="localhost"/>
+        <env name="MAIL_PORT" value="1025"/>
+        <env name="MAIL_FROM_ADDRESS" value="integrationtest@email.com"/>
+        <env name="BLOCKED_IP_EMAIL" value="test@domain.com"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
