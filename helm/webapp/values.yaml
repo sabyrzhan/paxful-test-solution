@@ -10,3 +10,31 @@ image:
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
+
+env:
+  - name: MAIL_MAILER
+    value: "smtp"
+  - name: MAIL_HOST
+    value: "localhost"
+  - name: MAIL_PORT
+    value: "1025"
+  - name: MAIL_FROM_ADDRESS
+    value: "hello@example.com"
+  - name: MAIL_FROM_NAME
+    value: "WebApp"
+  - name: DB_CONNECTION
+    value: "pgsql"
+  - name: DB_HOST
+    value: "postgresql-ha-pgpool.default.svc.cluster.local"
+  - name: DB_PORT
+    value: "5432"
+  - name: DB_DATABASE
+    value: "paxful-test-db"
+  - name: DB_USERNAME
+    value: "postgres"
+  - name: BLOCKED_IP_EMAIL
+    value: "test@domain.com"
+
+secrets:
+  db_secret_name: db-password
+  app_secret_name: app-key

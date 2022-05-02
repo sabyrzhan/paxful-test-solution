@@ -1,6 +1,6 @@
 FROM ubuntu:21.10
 
-LABEL maintainer="Taylor Otwell"
+LABEL maintainer="Sabyrzhan Tynybayev"
 
 ARG WWWGROUP
 ARG NODE_VERSION=16
@@ -48,13 +48,12 @@ RUN apt-get update \
 
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.1
 
-RUN groupadd --force -g 1000 sail
-RUN useradd -ms /bin/bash --no-user-group -g 1000 -u 1337 sail
-
 COPY start-container /usr/local/bin/start-container
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY php.ini /etc/php/8.1/cli/conf.d/99-sail.ini
 RUN chmod +x /usr/local/bin/start-container
+COPY / /var/www/html
+RUN rm .env
 
 EXPOSE 8000
 

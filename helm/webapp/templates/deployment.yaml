@@ -15,11 +15,28 @@ spec:
         app: webapp
     spec:
       containers:
+        - name: mailhog
+          image: mailhog/mailhog
+          imagePullPolicy: Always
+          ports:
+            - name: smtp
+              containerPort: 1025
+            - name: ui
+              containerPort: 8025
         - name: {{ .Values.image.name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:
-            - name:
+          env: {{ toYaml .Values.env | nindent 12 }}
+            - name: APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.app_secret_name }}
+                  key: key
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.db_secret_name }}
+                  key: password
           ports:
             - name: http
               containerPort: 80

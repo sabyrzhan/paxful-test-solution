@@ -1,7 +1,7 @@
 version: "3"
 services:
     php_apache:
-        image: paxful-test-solution
+        image: sabyrzhan/paxful-test-solution
         build:
             context: .
         volumes:
