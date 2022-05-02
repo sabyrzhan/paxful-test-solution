@@ -1,16 +1,28 @@
 version: "3"
 services:
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: paxful-test-db
+      POSTGRES_PASSWORD: test
   php_apache:
     image: sabyrzhan/paxful-test-solution
     environment:
       APP_KEY: base64:nFRTmt4q+VWNtKGawRMwVLMcuxa6L868QEziZCIbXF0=
       MAIL_MAILER: smtp
-      MAIL_HOST: 192.168.1.161
+      MAIL_HOST: mailhog
       MAIL_PORT: 1025
       MAIL_FROM_ADDRESS: hello@example.com
       MAIL_FROM_NAME: "WebApp"
       DB_CONNECTION: pgsql
-      DB_HOST: 192.168.1.161
+      DB_HOST: db
       DB_PORT: 5432
       DB_DATABASE: paxful-test-db
       DB_USERNAME: postgres
@@ -18,3 +30,6 @@ services:
       BLOCKED_IP_EMAIL: test@domain.com
     ports:
       - "80:80"
+    depends_on:
+      - db
+      - mailhog

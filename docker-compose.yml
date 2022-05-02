@@ -1,5 +1,17 @@
 version: "3"
 services:
+    mailhog:
+        image: mailhog/mailhog
+        ports:
+            - "1025:1025"
+            - "8025:8025"
+    db:
+        image: postgres
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_DB: paxful-test-db
+            POSTGRES_PASSWORD: test
     php_apache:
         image: sabyrzhan/paxful-test-solution
         build:
@@ -8,3 +20,6 @@ services:
             - "./:/var/www/html"
         ports:
             - "80:80"
+        depends_on:
+            - mailhog
+            - db

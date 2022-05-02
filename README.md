@@ -1,8 +1,12 @@
 # Paxful Test Solution
 ## Overview
-The solution consists from:
-1. Helm charts of PostgreSQL, Grafana, Prometheus and WebApp itself.
-2. There are 2 docker-compose files:
+The solution is the webapp written in Laravel PHP framework with helm charts.
+Helm charts are located at `helm` folder with following contents:
+1. `grafana` - Grafana helm chart from Bitnami
+2. `kube-prometheus` - Prometheus helm chart from Bitnami
+3. `postgresql-ha` - PostgreSQL-HA with RepMgr from Bitnami
+4. `webapp` - this web application's helm chart
+5. There are 2 docker-compose files:
    1. `docker-compose.yml` - for local development
    2. `docker-compose-test.yml` - for testing integration with DB and Mail services
 
@@ -53,3 +57,12 @@ To check sent emails:
 ## Grafana UI
 If you added Prometheus and Grafana charts then you should import
 PostgreSQL dashboard with ID: 9628
+
+## Database schema
+Schema data is stored in `schema.sql`. Import it into the clean database.
+
+## Local development
+Before starting to develop do the following:
+1. Copy `.env.example` to `.env` file and specify DB and mail parameters
+2. Start containers with `docker-compose up`
+3. Migrate DB schema from `schema.sql` manually
