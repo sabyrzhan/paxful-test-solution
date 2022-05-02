@@ -1380,7 +1380,7 @@ volumePermissions:
 persistence:
   ## @param persistence.enabled Enable data persistence
   ##
-  enabled: false
+  enabled: true
   ## @param persistence.existingClaim A manually managed Persistent Volume and Claim
   ## If defined, PVC must be created manually before volume will be bound.
   ## All replicas will share this PVC, using existingClaim with replicas > 1 is only useful in very special use cases.
