@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
 
 class Controller extends BaseController
@@ -37,6 +38,11 @@ class Controller extends BaseController
                 [Request::fullUrl(), $clientIp]);
         }
 
+        Mail::send('mail', ['ipAddress' => $clientIp], function($message) {
+            $message->to(env('BLOCKED_IP_EMAIL'))->subject('Attention! IP address blocked!');
+            $message->from(env('MAIL_FROM_ADDRESS'), 'WebApp');
+        });
+
         return response()->json([
             'status' => 444,
             'error' => 'Client blocked!'
@@ -44,7 +50,6 @@ class Controller extends BaseController
     }
 
     private function ipExists($ip) {
-        Config::set('database.default', 'pgsql');
         $exists = DB::select('select count(*) c from user_log where ip = ?', [$ip]);
 
         return count($exists) > 0 && $exists[0]->c > 0;
