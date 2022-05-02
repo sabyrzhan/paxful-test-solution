@@ -53,7 +53,7 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY php.ini /etc/php/8.1/cli/conf.d/99-sail.ini
 RUN chmod +x /usr/local/bin/start-container
 COPY / /var/www/html
-RUN rm .env
+RUN rm -rf .env
 
 EXPOSE 8000
 
