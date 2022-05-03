@@ -1,9 +1,9 @@
-To access the UI:
+To access the MailUI:
 
     1. kubectl port-forward svc/paxful-email-service 8025:8025
     2. Then access in browser: http://localhost:8025
 
-To access the WebApp if you are using ClusterIP:
+To access the WebAppUI if you are using ClusterIP:
 
     1. kubectl port-forward svc/paxful-test-solution-service 8080:80
     2. Then access in browser: http://localhost:8080

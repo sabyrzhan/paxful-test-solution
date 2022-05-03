@@ -473,7 +473,7 @@ grafana:
 ## @param persistence.size Size for the PV
 ##
 persistence:
-  enabled: true
+  enabled: false
   ## If defined, storageClassName: <storageClass>
   ## If set to "-", storageClassName: "", which disables dynamic provisioning
   ## If undefined (the default) or set to null, no storageClassName spec is
