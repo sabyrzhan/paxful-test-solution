@@ -1,4 +1,4 @@
-# Paxful Test Solution
+# 👨‍💻 📝 📊 Paxful Test Solution
 ## Overview
 The solution is the webapp written in Laravel PHP framework with helm charts.
 Helm charts are located at `helm` folder with following contents:
