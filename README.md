@@ -22,7 +22,8 @@ Helm charts are located at `helm` folder with following contents:
    2. Access in browser at: `http://localhost:8080`
    3. Get the `admin` user password using 
 ```
-kubectl get secret grafana-admin --namespace default -o jsonpath="{.data.GF_SECURITY_ADMIN_PASSWORD}" | base64 --decode
+kubectl get secret grafana-admin --namespace default \
+        -o jsonpath="{.data.GF_SECURITY_ADMIN_PASSWORD}" | base64 --decode
 ```
 5. Install webapp: `helm install webapp .`
    1. If you are using ClusterIP
