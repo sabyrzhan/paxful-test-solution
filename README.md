@@ -44,8 +44,8 @@ kubectl get secret grafana-admin --namespace default \
       1. `kubectl port-forward svc/paxful-test-solution-service 8080:80`
       2. Then access in browser: http://localhost:8080
    2. If you are using LoadBalancer then use URL provided by CloudProvider
-6. Apply DB migration as described below in migration section
-7. Use port-forward from WebApp NOTES to access web and mail ui. How to is also described below
+7. Apply DB migration as described below in migration section
+8. Use port-forward from WebApp NOTES to access web and mail ui. How to is also described below
 
 ## Secrets
 ### Database secret
