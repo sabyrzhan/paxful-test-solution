@@ -93,6 +93,8 @@ If you added Prometheus and Grafana charts then you should import
 PostgreSQL dashboard with ID: 9628
 
 ## Database schema and migration
+There is only one table - `user_log` which stores all the blocked IPs.
+
 Database schema is managed with laravel migration. To execute migration do:
 1. Copy `.env.example` to `.env` and set/update `DB_*` parameters in `.env` file
 2. Install dependencies with composer if didnt: `composer install`
