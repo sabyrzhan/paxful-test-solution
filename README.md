@@ -32,7 +32,7 @@ kubectl get secret --namespace default db-password \
         -o jsonpath="{.data.postgresql-password}" | base64 --decode
 ```
 4. Install grafana: `helm install grafana .` 
-   1. `kubectl port-forward svc/grafana 8080:300`
+   1. `kubectl port-forward svc/grafana 8080:3000`
    2. Access in browser at: `http://localhost:8080`
    3. Get the `admin` user password using 
 ```
