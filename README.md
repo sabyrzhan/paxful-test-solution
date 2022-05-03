@@ -16,7 +16,7 @@ Helm charts are located at `helm` folder with following contents:
 2. It responds to the URL `http://host/blacklisted` with conditions:
     * return error code 444 to the visitor
     * block the IP of the visitor
-    * send an email with IP address to "test@domain.com"
+    * send an email with IP address to `test@domain.com`
     * insert into PostgreSQL table information: path, IP address of the visitor and datetime when he got blocked
 
 ## Helm chars installation steps
