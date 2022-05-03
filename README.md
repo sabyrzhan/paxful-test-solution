@@ -17,6 +17,11 @@ Helm charts are located at `helm` folder with following contents:
     2. Access in browser at: `http://localhost:9090`
 3. Install postgresql-ha: `helm install postgresql-ha .`
    1. To access locally: `kubectl port-forward --namespace default svc/postgresql-ha-pgpool 5432:5432`
+   2. If you need to know the password for `postgres` user get the password:
+```
+kubectl get secret --namespace default db-password \
+        -o jsonpath="{.data.postgresql-password}" | base64 --decode
+```
 4. Install grafana: `helm install grafana .` 
    1. `kubectl port-forward svc/grafana 8080:300`
    2. Access in browser at: `http://localhost:8080`
