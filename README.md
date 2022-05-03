@@ -54,7 +54,11 @@ kubectl get secrets
 ### App secret
 Since webapp was built using Laravel, it requires secret in base64 format.
 The create app key secret:
-1. Generate key:
+1. Install dependencies with `composer` if not installed:
+```
+composer install
+```
+3. Generate key:
 ```
 php artisan key:generate --show
 ```
