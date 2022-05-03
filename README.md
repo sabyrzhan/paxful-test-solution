@@ -1,4 +1,4 @@
-# Paxful Test Solution
+# 👨‍💻 📝 📊 Paxful Test Solution
 ## Overview
 The solution is the webapp written in Laravel PHP framework with helm charts.
 Helm charts are located at `helm` folder with following contents:
@@ -10,6 +10,15 @@ Helm charts are located at `helm` folder with following contents:
    1. `docker-compose.yml` - for local development
    2. `docker-compose-test.yml` - for testing integration with DB and Mail services
 
+
+## Application test requirement
+1. It responds to the URL like `http://host/?n=x` and returns n*n.
+2. It responds to the URL `http://host/blacklisted` with conditions:
+    * return error code 444 to the visitor
+    * block the IP of the visitor
+    * send an email with IP address to `test@domain.com`
+    * insert into PostgreSQL table information: path, IP address of the visitor and datetime when he got blocked
+
 ## Helm chars installation steps
 1. Add secrets as descibed below
 2. Install prometheus: `helm install prometheus .`
@@ -17,14 +26,26 @@ Helm charts are located at `helm` folder with following contents:
     2. Access in browser at: `http://localhost:9090`
 3. Install postgresql-ha: `helm install postgresql-ha .`
    1. To access locally: `kubectl port-forward --namespace default svc/postgresql-ha-pgpool 5432:5432`
+   2. If you need to know the password for `postgres` user get the password:
+```
+kubectl get secret --namespace default db-password \
+        -o jsonpath="{.data.postgresql-password}" | base64 --decode
+```
 4. Install grafana: `helm install grafana .` 
-   1. `kubectl port-forward svc/grafana 8080:300`
+   1. `kubectl port-forward svc/grafana 8080:3000`
    2. Access in browser at: `http://localhost:8080`
+   3. Get the `admin` user password using 
+```
+kubectl get secret grafana-admin --namespace default \
+        -o jsonpath="{.data.GF_SECURITY_ADMIN_PASSWORD}" | base64 --decode
+```
 5. Install webapp: `helm install webapp .`
    1. If you are using ClusterIP
       1. `kubectl port-forward svc/paxful-test-solution-service 8080:80`
       2. Then access in browser: http://localhost:8080
    2. If you are using LoadBalancer then use URL provided by CloudProvider
+7. Apply DB migration as described below in migration section
+8. Use port-forward from WebApp NOTES to access web and mail ui. How to is also described below
 
 ## Secrets
 ### Database secret
@@ -44,7 +65,11 @@ kubectl get secrets
 ### App secret
 Since webapp was built using Laravel, it requires secret in base64 format.
 The create app key secret:
-1. Generate key:
+1. Install dependencies with `composer` if not installed:
+```
+composer install
+```
+3. Generate key:
 ```
 php artisan key:generate --show
 ```
@@ -68,9 +93,12 @@ If you added Prometheus and Grafana charts then you should import
 PostgreSQL dashboard with ID: 9628
 
 ## Database schema and migration
+There is only one table - `user_log` which stores all the blocked IPs.
+
 Database schema is managed with laravel migration. To execute migration do:
-1. Set/update db parameters in `.env` file
-2. Execute
+1. Copy `.env.example` to `.env` and set/update `DB_*` parameters in `.env` file
+2. Install dependencies with composer if didnt: `composer install`
+3. Execute
 ```
 php artisan migrate
 ```
@@ -87,8 +115,8 @@ Before starting to develop do the following:
 2. Start containers with `docker-compose up`
 3. Migrate DB schema with `php artisan migrate` manually
 
-### Running tests
-There are unit and integration tests. To run them:
+### Running integration tests
+For the integration you should run test container before. To run them:
 1. First run `docker-compose -f docker-compose-test.yml up -d`
 2. `php artisan test`
 
@@ -98,6 +126,11 @@ Docker image is stored in Docker hub.
 2. To push `docker-compose push`
 
 ## Deployment to EKS
-If you want to deploy and test on EKS you can:
-* create cluster quickly by executing `./eks.sh create`
-* to delete `./eks.sh delete`
+### Requirements
+* Install `eksctl` [tool](https://eksctl.io/)
+
+### Usage
+If you want to deploy and test on EKS you can quickly create cluster using `eksctl` [tool](https://eksctl.io/).
+To quickly create/delete cluster you can use `eks.sh` file:
+* `./eks.sh create`
+* `./eks.sh delete`
