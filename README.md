@@ -85,7 +85,8 @@ PostgreSQL dashboard with ID: 9628
 ## Database schema and migration
 Database schema is managed with laravel migration. To execute migration do:
 1. Set/update db parameters in `.env` file
-2. Execute
+2. Install dependencies with composer if didnt: `composer install`
+3. Execute
 ```
 php artisan migrate
 ```
