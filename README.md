@@ -104,8 +104,8 @@ Before starting to develop do the following:
 2. Start containers with `docker-compose up`
 3. Migrate DB schema with `php artisan migrate` manually
 
-### Running tests
-There are unit and integration tests. To run them:
+### Running integration tests
+For the integration you should run test container before. To run them:
 1. First run `docker-compose -f docker-compose-test.yml up -d`
 2. `php artisan test`
 
