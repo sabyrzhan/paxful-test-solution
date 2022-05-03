@@ -115,6 +115,11 @@ Docker image is stored in Docker hub.
 2. To push `docker-compose push`
 
 ## Deployment to EKS
-If you want to deploy and test on EKS you can:
-* create cluster quickly by executing `./eks.sh create`
-* to delete `./eks.sh delete`
+### Requirements
+* Install `eksctl` [tool](https://eksctl.io/)
+
+### Usage
+If you want to deploy and test on EKS you can quickly create cluster using `eksctl` [tool](https://eksctl.io/).
+To quickly create/delete cluster you can use `eks.sh` file:
+* `./eks.sh create`
+* `./eks.sh delete`
